@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/demo_player.gd" id="1_player"]
+
+[sub_resource type="RectangleShape2D" id="PlayerShape"]
+size = Vector2(28, 48)
+
+[sub_resource type="RectangleShape2D" id="FloorShape"]
+size = Vector2(900, 40)
+
+[sub_resource type="RectangleShape2D" id="PlatformShape"]
+size = Vector2(180, 20)
+
+[node name="Demo" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(480, 490)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="PlatformA" type="StaticBody2D" parent="."]
+position = Vector2(350, 390)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformA"]
+shape = SubResource("PlatformShape")
+
+[node name="PlatformB" type="StaticBody2D" parent="."]
+position = Vector2(650, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformB"]
+shape = SubResource("PlatformShape")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(180, 420)
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("PlayerShape")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
